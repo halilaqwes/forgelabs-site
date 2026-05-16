@@ -142,7 +142,7 @@ export default function AiChat({ onBack }) {
           cursor: 'pointer',
           fontFamily: 'Inter, sans-serif',
           zIndex: 1000,
-        }}
+        }}>
         Forge Labs
       </motion.div>
 
