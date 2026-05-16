@@ -262,7 +262,7 @@ export default function AiChat({ onBack }) {
                       color: '#00ff88',
                       letterSpacing: '0.08em',
                       textTransform: 'uppercase',
-                    }}
+                    }}>
                     Forge Labs
                   </span>
                 </div>
@@ -365,7 +365,7 @@ export default function AiChat({ onBack }) {
               color: '#525252',
               fontSize: '0.65rem',
               marginTop: '0.5rem',
-            }}
+            }}>
             Forge Labs Asistan sadece hazır sorulara yanıt vermektedir.
           </p>
         </div>
