@@ -101,7 +101,7 @@ export default function Header({ onNavigate }) {
         >
           Ana Sayfa
         </a>
-        <a href="https://play.google.com/store" target="_blank" rel="noopener noreferrer" style={{
+        <a href="https://play.google.com/store/apps/dev?id=5518285560097258062&pli=1" target="_blank" rel="noopener noreferrer" style={{
           color: 'rgba(255,255,255,0.85)',
           textDecoration: 'none',
           fontSize: '0.9rem',
@@ -191,7 +191,7 @@ export default function Header({ onNavigate }) {
               Ana Sayfa
             </a>
             <a 
-              href="https://play.google.com/store"
+              href="https://play.google.com/store/apps/dev?id=5518285560097258062&pli=1"
               target="_blank" rel="noopener noreferrer"
               onClick={() => setIsOpen(false)}
               style={{ fontSize: '1.5rem', color: '#fff', textDecoration: 'none', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem' }}

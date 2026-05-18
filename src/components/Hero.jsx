@@ -113,7 +113,7 @@ export default function Hero({ onNavigate }) {
 
             <motion.div variants={itemVariants} style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
               <button
-                onClick={() => window.open('https://play.google.com/store', '_blank')}
+                onClick={() => window.open('https://play.google.com/store/apps/dev?id=5518285560097258062&pli=1', '_blank')}
                 className="shiny-cta"
               >
                 <span>Google Play Store <ArrowRight size={18} style={{ display: 'inline', verticalAlign: 'middle', marginLeft: '0.3rem' }} /></span>
