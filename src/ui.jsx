@@ -110,6 +110,7 @@ export function PageIntro({
   accent,
   description,
   children,
+  trail = [],
 }) {
   return (
     <section className="page-intro wrap">
@@ -117,6 +118,7 @@ export function PageIntro({
         <div className="breadcrumbs">
           <SiteLink href="/">ForgeLabs</SiteLink>
           <span>/</span>
+          {trail.map(item => <span key={item.href}><SiteLink href={item.href}>{item.label}</SiteLink><span> / </span></span>)}
           <span>{eyebrow}</span>
         </div>
         <Eyebrow number={number}>{eyebrow}</Eyebrow>

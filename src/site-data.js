@@ -1,3 +1,4 @@
+import { fitnessArticles } from "./fitness-data.js";
 export const STORE = "https://play.google.com/store/apps/details?id=stat.boost";
 export const EMAIL = "forgelabss.dev@gmail.com";
 export const ORIGIN = "https://www.forgelabs.site";
@@ -6,9 +7,9 @@ export const routes = [
   {
     path: "/",
     label: "Ana Sayfa",
-    title: "ForgeLabs — Meraktan Ürüne",
+    title: "ForgeLabs — Stat Boost ve Fitness Takip Araçları",
     description:
-      "Gerçek ihtiyaçlardan doğan dijital ürünler. ForgeLabs bağımsız ürün stüdyosu; Stat Boost, tasarım, teknoloji ve etkileşimli deneyler.",
+      "ForgeLabs ürün stüdyosu. Stat Boost Android antrenman takip uygulamasını, fitness kayıt rehberlerini ve ücretsiz hacim hesaplayıcıyı keşfet.",
   },
   {
     path: "/urunler",
@@ -20,9 +21,9 @@ export const routes = [
   {
     path: "/urunler/stat-boost",
     label: "Stat Boost",
-    title: "Stat Boost — Her Setin Bir Sonraki Adımı Var | ForgeLabs",
+    title: "Stat Boost — Android Antrenman Takip Uygulaması | ForgeLabs",
     description:
-      "Setlerini kaydet, kişisel rekorlarını ve gelişimini takip et. Stat Boost antrenman günlüğü Android için Google Play’de yayında.",
+      "Stat Boost ile ağırlık, set, tekrar ve RPE kaydet; geçmiş antrenmanlarını ve kişisel rekorlarını takip et. Android için Google Play’de.",
   },
   {
     path: "/studio",
@@ -45,10 +46,21 @@ export const routes = [
     description:
       "Stat Boost desteği, ürün geri bildirimi ve iş birliği için ForgeLabs ile iletişime geç. Doğrulanmış destek adresimiz: forgelabss.dev@gmail.com.",
   },
+  {
+    path: "/fitness",
+    label: "Fitness rehberi",
+    title: "Fitness Rehberi — Antrenman Takibi ve Hesaplama | ForgeLabs",
+    description: "Antrenman günlüğü, progressive overload ve hacim hesabı için kaynaklı Türkçe rehberler. Kayıt örnekleri ve ücretsiz antrenman hacmi hesaplayıcı.",
+  },
+  ...fitnessArticles,
+  {
+    path: "/fitness/hacim-hesaplayici",
+    label: "Hacim hesaplayıcı",
+    title: "Antrenman Hacmi Hesaplayıcı — Set × Tekrar × Kilo | ForgeLabs",
+    description: "Antrenman hacmini set, tekrar ve ağırlıkla hesapla. İki kaydın tonajını ve yüzde değişimini karşılaştır. Üyeliksiz, tarayıcıda çalışan ücretsiz araç.",
+  },
 ];
-export const navigation = routes.filter(
-  (route) => !["/", "/urunler/stat-boost"].includes(route.path),
-);
+export const navigation = ["/urunler", "/fitness", "/studio", "/lab", "/iletisim"].map(path => routes.find(route => route.path === path));
 export const routeHref = (path) => (path === "/" ? "/" : `${path}/`);
 export function normalizePath(path) {
   let decoded = path;

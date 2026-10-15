@@ -199,6 +199,7 @@ export default function Home() {
           </span>
         </div>
       </section>
+      <section className="wrap fitness-home-teaser"><Eyebrow>FITNESS / KAYITTAN ANLAMA</Eyebrow><h2>Her tekrarın bir kaydı olsun.</h2><p>Stat Boost ile başlayan antrenman takibini, örnek günlükler ve tarayıcıda çalışan hacim hesaplayıcımızla keşfet.</p><TextLink href="/fitness/">Fitness rehberine geç</TextLink></section>
       <section className="home-lab section-space wrap">
         <Reveal className="section-topline">
           <Eyebrow number="03">BİRAZ MERAK, BİRAZ OYUN</Eyebrow>

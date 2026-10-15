@@ -18,6 +18,9 @@ import Studio from "./pages/Studio";
 import Lab from "./pages/Lab";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import { FitnessHub, FitnessArticle, VolumeCalculator } from "./pages/Fitness";
+import { fitnessArticles } from "./fitness-data";
+import { structuredData } from "./seo";
 
 const pages = {
   "/": Home,
@@ -26,6 +29,9 @@ const pages = {
   "/studio": Studio,
   "/lab": Lab,
   "/iletisim": Contact,
+  "/fitness": FitnessHub,
+  "/fitness/hacim-hesaplayici": VolumeCalculator,
+  ...Object.fromEntries(fitnessArticles.map(article => [article.path, FitnessArticle])),
 };
 
 export default function App({ initialPath = "/" }) {
@@ -54,6 +60,14 @@ export default function App({ initialPath = "/" }) {
     set('meta[name="twitter:title"]', meta.title);
     set('meta[name="twitter:description"]', meta.description);
     document.querySelector('link[rel="canonical"]')?.setAttribute("href", url);
+    set('meta[property="og:type"]', fitnessArticles.some(article => article.path === path) ? "article" : "website");
+    const schema = document.querySelector('#page-schema');
+    if (schema) schema.textContent = JSON.stringify(structuredData(path));
+    let robots = document.querySelector('meta[name="robots"]');
+    if (!getRoute(path)) {
+      if (!robots) { robots = document.createElement("meta"); robots.name = "robots"; document.head.append(robots); }
+      robots.content = "noindex";
+    } else robots?.remove();
     const hash = location.includes("#") ? location.split("#")[1] : "";
     const frame = requestAnimationFrame(() => {
       if (hash)
@@ -81,7 +95,7 @@ export default function App({ initialPath = "/" }) {
         />
         <Header key={`header-${path}`} path={path} />
         <RouteEntrance key={`page-${path}`}>
-          <Page />
+          <Page path={path} />
         </RouteEntrance>
         <Footer
           paused={paused}

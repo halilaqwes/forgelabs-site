@@ -27,6 +27,7 @@ export default function StatBoost() {
         <div>
           <Reveal>
             <div className="breadcrumbs">
+              <SiteLink href="/">ForgeLabs</SiteLink><span>/</span>
               <SiteLink href="/urunler/">Ürünler</SiteLink>
               <span>/</span>
               <span>Stat Boost</span>
@@ -46,16 +47,16 @@ export default function StatBoost() {
               </span>
             </div>
             <h1 tabIndex={-1}>
-              Bugünkü emek.
+              Stat Boost.
               <br />
-              <span>Yarınki</span>
+              <span>Antrenman</span>
               <br />
-              <em>gelişim.</em>
+              <em>takibi.</em>
             </h1>
             <p>
-              Antrenmanını kaydet. Bir öncekiyle karşılaştır.
+              Stat Boost, Android için antrenman takip uygulaması.
               <br />
-              Sadece daha çok değil, daha bilinçli çalış.
+              Ağırlık, set ve tekrarlarını kaydet; bir öncekiyle karşılaştır.
             </p>
           </Reveal>
           <Reveal className="detail-hero-actions">
@@ -157,6 +158,7 @@ export default function StatBoost() {
         </div>
       </section>
       <FAQ />
+      <section className="wrap fitness-product-note"><h2>Antrenman takibine nereden başlamalı?</h2><p>Önce tutarlı bir günlük oluştur, sonra aynı egzersizin kayıtlarını karşılaştır. Fitness rehberlerimizde örnekler ve hesaplama aracı seni bekliyor.</p><TextLink href="/fitness/">Antrenman takibi rehberlerini keşfet</TextLink></section>
       <NextPage
         label="ÜRÜN DESTEĞİ VE GERİ BİLDİRİM"
         title="Birlikte daha iyiye."

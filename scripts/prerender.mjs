@@ -2,6 +2,8 @@ import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { render } from "../.prerender/entry-server.js";
 import { routes, notFound, ORIGIN, routeHref } from "../src/site-data.js";
+import { structuredData, serializeSchema } from "../src/seo.js";
+import { fitnessArticles, FITNESS_DATE } from "../src/fitness-data.js";
 
 const template = await readFile(resolve("dist/index.html"), "utf8");
 const escape = (value) =>
@@ -33,6 +35,8 @@ const renderPage = (route, html, is404 = false) => {
     /<link rel="canonical" href="[^"]*"\s*\/>/,
     `<link rel="canonical" href="${url}" />`,
   );
+  html = html.replace(/<script id="page-schema" type="application\/ld\+json">[\s\S]*?<\/script>/, `<script id="page-schema" type="application/ld+json">${serializeSchema(structuredData(route.path))}</script>`);
+  if (fitnessArticles.some(article => article.path === route.path)) html = html.replace('property="og:type" content="website"', 'property="og:type" content="article"');
   if (is404)
     html = html.replace(
       "</head>",
@@ -61,5 +65,5 @@ await writeFile(
 );
 await writeFile(
   resolve("dist/sitemap.xml"),
-  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${routes.map((route) => `  <url><loc>${ORIGIN}${routeHref(route.path)}</loc></url>`).join("\n")}\n  <url><loc>${ORIGIN}/privacy.html</loc></url>\n</urlset>\n`,
+  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${routes.map((route) => `  <url><loc>${ORIGIN}${routeHref(route.path)}</loc>${route.path.startsWith("/fitness") ? `<lastmod>${FITNESS_DATE}</lastmod>` : ""}</url>`).join("\n")}\n  <url><loc>${ORIGIN}/privacy.html</loc></url>\n</urlset>\n`,
 );

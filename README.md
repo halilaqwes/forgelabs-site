@@ -46,7 +46,17 @@ The WebP files in `public/images` are the icon and screenshots from the owner's 
 
 The old Spline/GSAP demo, preset-answer assistant and unused page components have been replaced. They remain recoverable in Git history. Existing unrelated `.next/` and `next-env.d.ts` files are not part of this Vite app and are left untouched.
 
-## Verification checklist
+## Fitness search and content
+
+`SEO-PLAN.md` records the Turkish search-intent map, rollout criteria, source links and 7/28/56/90-day measurement plan. No rankings, organic traffic increases or Core Web Vitals scores are assumed without actual data.
+
+The `/fitness/` hub links three sourced guides and `/fitness/hacim-hesaplayici/`. Article content and real publication dates live in `src/fitness-data.js`; metadata is registered in `src/site-data.js`. `src/seo.js` generates per-page schema graphs in both the first HTML response and client navigation. Do not add invented credentials, ratings, reviews or update dates. SoftwareApplication is semantic metadata, not a claim of Google rich-result eligibility.
+
+The calculator uses the pure functions in `src/volume.js` and does not send entries to a server or persist them. It supports 1–10 variable sets for each record, 0–1,000 kg and integer repetitions 1–200. Missing/invalid values suppress results; a zero previous volume suppresses percentage change. The daily-log CSV is standalone, not a promised app import format. Calculator math and invalid-input cases are part of the build verifier.
+
+Search Console ownership verification and sitemap submission require the owner's Google account; no verification token, analytics or tracking was added. `dist/sitemap.xml`, generated during build, is the authoritative production sitemap, not the legacy public fallback.
+
+### Existing experience regression checks
 
 - Build and lint pass.
 - At 320, 390, 768 and desktop widths, no content overflow.

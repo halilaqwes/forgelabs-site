@@ -47,7 +47,7 @@ export function Header({ path }) {
     };
   }, [open]);
   const active = (target) =>
-    path === target || (target === "/urunler" && path.startsWith("/urunler/"));
+    path === target || (["/urunler", "/fitness"].includes(target) && path.startsWith(`${target}/`));
   return (
     <header className="site-header">
       <div className="wrap header-inner">
