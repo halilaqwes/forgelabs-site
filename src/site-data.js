@@ -26,6 +26,12 @@ export const routes = [
       "Stat Boost ile ağırlık, set, tekrar ve RPE kaydet; geçmiş antrenmanlarını ve kişisel rekorlarını takip et. Android için Google Play’de.",
   },
   {
+    path: "/urunler/stat-boost/deneyim",
+    label: "Deneyim merkezi",
+    title: "Stat Boost Deneyim Merkezi — Tur, Kart ve Yardım | ForgeLabs",
+    description: "Stat Boost’u üç adımda keşfet, kendi antrenman kartını PNG indir. Yardım merkezi, egzersiz kayıt atlası ve Forge Notes tek bir sayfada.",
+  },
+  {
     path: "/studio",
     label: "Stüdyo",
     title: "Stüdyo — Bir Fikri Gerçeğe Dövmek | ForgeLabs",

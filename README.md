@@ -36,6 +36,12 @@ Vercel settings: **Vite**, repository root `./`, build `npm run build`, output `
 
 ## Source and assets
 
+### Stat Boost experience centre
+
+`/urunler/stat-boost/deneyim/` keeps product additions off the home page. A small link from the existing product hero leads to six anchored sections: a user-started 45-second/three-step screenshot tour, a local PNG workout-card builder, searchable/filterable help, an eight-exercise recordkeeping atlas, dated website notes and an email-draft experience invitation. The atlas is not a technique or personalized training guide; the notes are not app release notes; user testimonials are not fabricated. The tour reuses genuine Play promotional images, not a live app or invented video.
+
+`src/pages/StatBoostHub.jsx` owns the sections, `src/statboost-hub.css` their scoped styles, `src/workout-card.js` the tested card data, and `src/card-export.js` the on-demand Canvas PNG renderer. Card input never leaves the browser or persists. Export is 1080 × 1350; only user-entered title, sets and weights appear, with an explicit unverified-record label. The story form opens an email draft and does not send or publish automatically; follow-up permission defaults off. Reduced motion and the global pause stop automatic tour progression.
+
 `src/App.jsx` owns the layout, navigation effects and motion settings. `src/pages` contains route content; `src/components` holds reusable experiences. `src/ui.jsx` contains visual primitives. `src/index.css` retains base tokens and the original product/demo layouts; `src/pages.css` describes the new pages and effects. `src/site-data.js` is the route/metadata source of truth.
 
 The build generates static HTML for every route via `src/entry-server.jsx` and `scripts/prerender.mjs`. `scripts/verify-build.mjs` checks rendered content, titles, descriptions, canonical URLs, local links, image files, sitemap and the noindex 404. `dist/sitemap.xml` is generated from the route definitions, replacing the public fallback sitemap. Directory index files provide direct deep links without a catch-all rewrite. All production navigation uses real links with history-aware client transitions. `/privacy.html` stays at its original URL.

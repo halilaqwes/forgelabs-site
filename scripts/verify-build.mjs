@@ -4,6 +4,7 @@ import { resolve } from "node:path";
 import { routes, ORIGIN, routeHref, normalizePath } from "../src/site-data.js";
 import { fitnessArticles, journalCSV } from "../src/fitness-data.js";
 import { calculateVolume, compareVolume } from "../src/volume.js";
+import { defaultCardRows, workoutCardData } from "../src/workout-card.js";
 
 const fileFor = (path) =>
   path === "/" ? "dist/index.html" : `dist${normalizePath(path)}/index.html`;
@@ -16,6 +17,12 @@ assert.equal(new Set(routes.map(route => route.description)).size, routes.length
 assert.equal(calculateVolume([{ weight: "50", reps: "10" }, { weight: "50", reps: "9" }, { weight: "45", reps: "10" }]), 1400);
 for (const row of [{weight:"",reps:"10"}, {weight:" ",reps:"10"}, {weight:"-1",reps:"10"}, {weight:"1001",reps:"10"}, {weight:"60",reps:"1.5"}, {weight:"60",reps:"0"}, {weight:"60",reps:"201"}, {weight:"Infinity",reps:"10"}, {weight:"60",reps:""}]) assert.equal(calculateVolume([row]), null);
 assert.equal(calculateVolume([]), null);
+assert.equal(workoutCardData("Test", defaultCardRows()).volume, 1620);
+assert.equal(workoutCardData("Test", defaultCardRows()).reps, 27);
+assert.equal(workoutCardData("  ", defaultCardRows()), null);
+assert.equal(workoutCardData("Test", [{weight:"",reps:"10"}]), null);
+assert.equal(workoutCardData("Test", Array.from({length:9}, () => ({weight:"60",reps:"10"}))), null);
+assert.equal(workoutCardData("x".repeat(50), defaultCardRows()).title.length, 36);
 assert.equal(journalCSV.trim().split("\n").length, 2);
 assert.equal(journalCSV.split("\n")[0].split(",").length, 8);
 assert.equal(calculateVolume([{weight:"62.5",reps:"10"}]), 625);
@@ -26,6 +33,10 @@ assert.equal(compareVolume(1800, 1860).difference, 60);
 assert.ok(Math.abs(compareVolume(1500, 1400).percent + 6.6666666667) < 0.0001);
 for (const route of routes) {
   const html = await readFile(fileFor(route.path), "utf8");
+  if (route.path === "/") assert.ok(!html.includes('id="kart"'), "Do not move the product tools onto the homepage");
+  if (route.path === "/urunler/stat-boost/deneyim") {
+    for (const id of ["tur", "kart", "yardim", "atlas", "notlar", "hikayen"]) assert.ok(html.includes(`id="${id}"`), `Missing experience section ${id}`);
+  }
   assert.ok(!html.includes('name="robots" content="noindex"'), `Unexpected noindex: ${route.path}`);
   const schemas = [...html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)];
   assert.equal(schemas.length, 1, `Expected one schema graph: ${route.path}`);

@@ -7,6 +7,7 @@ export function breadcrumbs(path) {
   if (!route || path === "/") return items;
   if (path.startsWith("/fitness/")) items.push({ name: "Fitness rehberi", path: "/fitness" });
   if (path.startsWith("/urunler/")) items.push({ name: "Ürünler", path: "/urunler" });
+  if (path.startsWith("/urunler/stat-boost/")) items.push({ name: "Stat Boost", path: "/urunler/stat-boost" });
   items.push({ name: route.label, path });
   return items;
 }

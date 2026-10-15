@@ -61,6 +61,7 @@ export default function StatBoost() {
           </Reveal>
           <Reveal className="detail-hero-actions">
             <StoreLink />
+            <TextLink href="/urunler/stat-boost/deneyim/">Deneyim merkezini aç</TextLink>
             <a href="#statboost" className="text-link">
               İçeride neler var? <ArrowDown size={16} />
             </a>

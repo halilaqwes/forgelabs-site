@@ -14,6 +14,7 @@ import { RouteEntrance } from "./ui";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
 import StatBoost from "./pages/StatBoost";
+import StatBoostHub from "./pages/StatBoostHub";
 import Studio from "./pages/Studio";
 import Lab from "./pages/Lab";
 import Contact from "./pages/Contact";
@@ -26,6 +27,7 @@ const pages = {
   "/": Home,
   "/urunler": Products,
   "/urunler/stat-boost": StatBoost,
+  "/urunler/stat-boost/deneyim": StatBoostHub,
   "/studio": Studio,
   "/lab": Lab,
   "/iletisim": Contact,
