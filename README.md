@@ -1,6 +1,6 @@
 # ForgeLabs
 
-Turkish product-studio website for ForgeLabs and the published **Stat Boost** Android app.
+Turkish, six-page product-studio website for ForgeLabs and the published **Stat Boost** Android app. Pages are statically rendered at build time and hydrated in the browser.
 
 - Production: https://www.forgelabs.site/
 - Google Play: https://play.google.com/store/apps/details?id=stat.boost
@@ -22,7 +22,12 @@ Vercel settings: **Vite**, repository root `./`, build `npm run build`, output `
 
 ## Experience
 
-- Responsive product hero with CSS orbit animation and a real app screenshot.
+- Home `/`: editorial studio introduction, a custom live voxel monogram, product feature, light manifesto and Lab preview.
+- Products `/urunler/`: honest catalog with the one published product, its purpose and the studio's product principles.
+- Product `/urunler/stat-boost/`: dedicated Stat Boost story, real screenshots, features, Play links and product FAQ.
+- Studio `/studio/`: product philosophy, four-stage process and a layered perspective monogram.
+- Lab `/lab/`: Forge/wave/orbit particle forms, spring-driven scattering and the illustrative workout demo.
+- Contact `/iletisim/`: verified support address, copy control, support guidance and an explicit email-draft composer (no backend submission).
 - Keyboard-operable product tabs update the screenshot and feature description.
 - Browser-only workout demo: choose 20–120 kg in 2.5 kg increments and complete four sets of ten repetitions. Volume is `sets × weight × 10`. Weight locks after the first set; reset restores 60 kg and zero sets. This is illustrative, not training advice or a connection to an app account.
 - Studio story, native HTML FAQ, direct Google Play links and verified support email.
@@ -31,7 +36,11 @@ Vercel settings: **Vite**, repository root `./`, build `npm run build`, output `
 
 ## Source and assets
 
-`src/App.jsx` contains the page sections and local interaction state; `src/index.css` contains the shared design tokens and responsive layouts. `public/robots.txt` and `public/sitemap.xml` describe public pages. Metadata lives in `index.html`.
+`src/App.jsx` owns the layout, navigation effects and motion settings. `src/pages` contains route content; `src/components` holds reusable experiences. `src/ui.jsx` contains visual primitives. `src/index.css` retains base tokens and the original product/demo layouts; `src/pages.css` describes the new pages and effects. `src/site-data.js` is the route/metadata source of truth.
+
+The build generates static HTML for every route via `src/entry-server.jsx` and `scripts/prerender.mjs`. `scripts/verify-build.mjs` checks rendered content, titles, descriptions, canonical URLs, local links, image files, sitemap and the noindex 404. `dist/sitemap.xml` is generated from the route definitions, replacing the public fallback sitemap. Directory index files provide direct deep links without a catch-all rewrite. All production navigation uses real links with history-aware client transitions. `/privacy.html` stays at its original URL.
+
+`ForgeField.jsx` uses deterministic Canvas 2D 3D projection and per-particle damped springs. The animation pauses offscreen or in hidden tabs, caps DPR at 1.5 and drawing at roughly 30 fps, supports reduced motion and disposes all observers/listeners/frames. See `DESIGN-SOURCES.md` for the 21st.dev visual references and original-implementation notes.
 
 The WebP files in `public/images` are the icon and screenshots from the owner's Google Play listing, retrieved on 2026-10-15. Screenshots are cropped with CSS only. Names describe their original download order; see `AppScreen` for their semantic mapping. Interface typography uses Google Fonts (DM Sans and Manrope) with system fallbacks. The ForgeLabs monogram is code-native SVG. Original unused brand assets remain available in the repository.
 
@@ -45,4 +54,6 @@ The old Spline/GSAP demo, preset-answer assistant and unused page components hav
 - Product tabs work by pointer and arrow keys.
 - Mobile menu supports Escape and focus wrapping, then restores body scrolling.
 - FAQ opens, all hash anchors resolve, all images load and all download links target `stat.boost`.
-- `/privacy.html`, `/robots.txt`, `/sitemap.xml` remain accessible.
+- Direct loading, refresh, client navigation and browser back preserve one header/main per page.
+- Every route has server-rendered content and distinct SEO metadata before JavaScript runs.
+- `/privacy.html`, `/robots.txt`, `/sitemap.xml` and the custom 404 remain accessible.
