@@ -137,11 +137,16 @@
                 font-size: 1.8rem;
             }
         }
+        /* Shared studio palette; the existing policy text remains unchanged. */
+        :root { --bg-color: #10110f; --card-bg: #191b17; --primary-color: #c4f458; --text-muted: #b1b7a6; }
+        a:focus-visible { outline: 2px solid var(--primary-color); outline-offset: 4px; }
+        .back-link { display: inline-flex; margin-bottom: 28px; font-size: 14px; }
     </style>
 </head>
 <body>
 
 <div class="container">
+    <a class="back-link" href="/">← ForgeLabs’e dön</a>
     <header>
         <div class="brand">Stat Boost</div>
         <h1>Gizlilik Politikası</h1>
